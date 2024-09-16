@@ -48,7 +48,7 @@ public class RedditFeedReader : BackgroundService
                     Some: async data =>
                     {
 
-                        if (data.rateLimitRemaining == 0)
+                        if (data.rateLimitRemaining == 0) //fail safe
                             Thread.Sleep(TimeSpan.FromSeconds(data.rateLimitReset));
 
                         var topPost = data.postData!.Children

@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polly;
 using Reddit.Business.Services;
+using RedditReader.Business.Entities;
 using RedditReader.Data;
 using RedditReader.Data.Repository;
+using RedditReader.Shared;
 using RedditReader.Web;
 using RedditReader.Web.Components;
 using RedditReader.Web.Handlers;
@@ -71,16 +74,32 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 
-app.Map("/toppost", (IRedditPostRepository repository) =>
+app.Map("/toppost", Results<Ok<RedditPost>, BadRequest<Exception>> (ILogger logger, IRedditPostRepository repository) =>
 {
-    var post = repository.GetAll().OrderByDescending(x => x.TotalVotes).FirstOrDefault();
-    return Results.Ok(post);
+    try
+    {
+        var post = repository.GetAll(true).OrderByDescending(x => x.TotalVotes).FirstOrDefault();
+        return TypedResults.Ok(post);
+    }
+    catch (Exception ex)
+    {
+        logger.LogApiError(ex);
+        return TypedResults.BadRequest(ex);
+    }
 });
 
-app.Map("/topauthor", (IRedditPostAuthorRepository repository) =>
+app.Map("/topauthor", Results<Ok<RedditPostAuthor>, BadRequest<Exception>> (ILogger logger, IRedditPostAuthorRepository repository) =>
 {
-    var author = repository.GetAll().OrderByDescending(x => x.NumberOfPost).FirstOrDefault();
-    return Results.Ok(author);
+    try
+    {
+        var author = repository.GetAll(true).OrderByDescending(x => x.NumberOfPost).FirstOrDefault();
+        return TypedResults.Ok(author);
+    }
+    catch (Exception ex)
+    {
+        logger.LogApiError(ex);
+        return TypedResults.BadRequest(ex);
+    }
 });
 
 app.Run();

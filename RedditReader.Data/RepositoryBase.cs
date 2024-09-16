@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,8 +23,8 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         =>  _context.Set<T>().Where(expression);
 
-    public IEnumerable<T> GetAll()
-        => _context.Set<T>();
+    public IEnumerable<T> GetAll(bool disableTracking = false)
+        => disableTracking ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
 
     public T GetById(int id)
         => _context.Set<T>().Find(id);
