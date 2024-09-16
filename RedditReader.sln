@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditReader.Web", "RedditReader.Web\RedditReader.Web.csproj", "{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditReader.Data", "RedditReader.Data\RedditReader.Data.csproj", "{51E31277-8A1B-449C-8EFC-887495CD61FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditReader.Business.Entities", "RedditReader.Business.Entities\RedditReader.Business.Entities.csproj", "{FE474AFF-453D-459A-A3B8-6C4205AC8910}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reddit.Business.Services", "Reddit.Business.Services\Reddit.Business.Services.csproj", "{8A470B83-81DB-4E11-95CF-123849B50B25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E8469734-799F-4714-B859-1C04F74C2A30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{45838A47-ED33-4204-B8A4-AB047AC08858}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{B24C53BF-6BFC-4B44-8C74-530F92090AB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedditReader.Shared", "RedditReader.Shared\RedditReader.Shared.csproj", "{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E31277-8A1B-449C-8EFC-887495CD61FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E31277-8A1B-449C-8EFC-887495CD61FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E31277-8A1B-449C-8EFC-887495CD61FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E31277-8A1B-449C-8EFC-887495CD61FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE474AFF-453D-459A-A3B8-6C4205AC8910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE474AFF-453D-459A-A3B8-6C4205AC8910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE474AFF-453D-459A-A3B8-6C4205AC8910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE474AFF-453D-459A-A3B8-6C4205AC8910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A470B83-81DB-4E11-95CF-123849B50B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A470B83-81DB-4E11-95CF-123849B50B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A470B83-81DB-4E11-95CF-123849B50B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A470B83-81DB-4E11-95CF-123849B50B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6AF76C0B-3127-40E7-993A-AC15A3F7DE3D} = {B24C53BF-6BFC-4B44-8C74-530F92090AB6}
+		{51E31277-8A1B-449C-8EFC-887495CD61FF} = {E8469734-799F-4714-B859-1C04F74C2A30}
+		{FE474AFF-453D-459A-A3B8-6C4205AC8910} = {45838A47-ED33-4204-B8A4-AB047AC08858}
+		{8A470B83-81DB-4E11-95CF-123849B50B25} = {45838A47-ED33-4204-B8A4-AB047AC08858}
+		{1C766D89-E66C-43B5-BDC3-AD79E6BD08EF} = {45838A47-ED33-4204-B8A4-AB047AC08858}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEC10F26-4C31-43DB-ABF5-A821409B451B}
+	EndGlobalSection
+EndGlobal

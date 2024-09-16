@@ -1,0 +1,50 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@using RedditReader.Shared.Models
+@inject NavigationManager Navigation
+@rendermode @(new InteractiveServerRenderMode(false))
+
+<PageTitle>Home</PageTitle>
+
+<h1>Reddit Feed Top Stats</h1>
+
+<h2>Top Reddit Post</h2>
+<label>@TopPost</label>
+
+<h2>Author With Most Posts</h2>
+<label>@TopAuthor</label>
+
+@code
+{
+    private HubConnection? _hubConnection;
+
+    private string TopPost = "";
+    private string TopAuthor = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _hubConnection = new HubConnectionBuilder()
+                                .WithUrl(Navigation.ToAbsoluteUri("/redditfeed"))
+                                .Build();
+
+        _hubConnection.On<HubNotifcation>("ReceivePost", BroadcastMessage);
+
+        await _hubConnection.StartAsync();
+    }
+
+    private void BroadcastMessage(HubNotifcation hubNotifcation)
+    {
+        TopPost = $"Title: {hubNotifcation.TopPost.PostTitle} - Ups: {hubNotifcation.TopPost.Ups}";
+        TopAuthor = $"Author Name: {hubNotifcation.TopAuthor.AuthorName} - Number of Posts: {hubNotifcation.TopAuthor.NumberOfPosts}";
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if(_hubConnection is not null)
+        {
+            await _hubConnection.DisposeAsync();
+        }
+    }
+}
