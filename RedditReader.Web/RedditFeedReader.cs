@@ -70,6 +70,7 @@ public class RedditFeedReader : BackgroundService
                             {
                                 PostId = topPost.PostId,
                                 PostTitle = topPost.PostTitle,
+                                Url = topPost.Url,
                                 TotalVotes = topPost.Ups
                             });
 
