@@ -11,6 +11,12 @@
 <h2>Top Reddit Post</h2>
 <label>@TopPost</label>
 
+@if (TopPost != "")
+{
+    <br />
+    <a href="@PostUrl" target="_blank">View Post</a>
+}
+
 <h2>Author With Most Posts</h2>
 <label>@TopAuthor</label>
 
@@ -19,6 +25,7 @@
     private HubConnection? _hubConnection;
 
     private string TopPost = "";
+    private string PostUrl = "";
     private string TopAuthor = "";
 
     protected override async Task OnInitializedAsync()
@@ -35,6 +42,7 @@
     private void BroadcastMessage(HubNotifcation hubNotifcation)
     {
         TopPost = $"Title: {hubNotifcation.TopPost.PostTitle} - Ups: {hubNotifcation.TopPost.Ups}";
+        PostUrl = hubNotifcation.TopPost.Url;
         TopAuthor = $"Author Name: {hubNotifcation.TopAuthor.AuthorName} - Number of Posts: {hubNotifcation.TopAuthor.NumberOfPosts}";
 
         InvokeAsync(StateHasChanged);

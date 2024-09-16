@@ -53,7 +53,7 @@ public class RedditFeedReader : BackgroundService
 
                         var topPost = data.postData!.Children
                                             .OrderByDescending(x => x.Data.Ups)
-                                            .Select(x => new TopPostDetails(x.Data.Id, x.Data.Title, x.Data.Ups))
+                                            .Select(x => new TopPostDetails(x.Data.Id, x.Data.Title, x.Data.Ups, x.Data.URL))
                                             .FirstOrDefault();
                         var topAuthor = data.postData!.Children
                                                 .GroupBy(x => x.Data.Author)
