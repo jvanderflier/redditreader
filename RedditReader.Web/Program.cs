@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Reddit.Business.Services;
@@ -74,7 +75,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 
-app.Map("/toppost", Results<Ok<RedditPost>, BadRequest<Exception>> (ILogger logger, IRedditPostRepository repository) =>
+app.Map("/toppost", Results<Ok<RedditPost>, BadRequest<Exception>> (ILoggerFactory loggerFactory, IRedditPostRepository repository) =>
 {
     try
     {
@@ -83,12 +84,12 @@ app.Map("/toppost", Results<Ok<RedditPost>, BadRequest<Exception>> (ILogger logg
     }
     catch (Exception ex)
     {
-        logger.LogApiError(ex);
+        loggerFactory.CreateLogger("Program").LogApiError(ex);
         return TypedResults.BadRequest(ex);
     }
 });
 
-app.Map("/topauthor", Results<Ok<RedditPostAuthor>, BadRequest<Exception>> (ILogger logger, IRedditPostAuthorRepository repository) =>
+app.Map("/topauthor", Results<Ok<RedditPostAuthor>, BadRequest<Exception>> (ILoggerFactory loggerFactory, IRedditPostAuthorRepository repository) =>
 {
     try
     {
@@ -97,7 +98,7 @@ app.Map("/topauthor", Results<Ok<RedditPostAuthor>, BadRequest<Exception>> (ILog
     }
     catch (Exception ex)
     {
-        logger.LogApiError(ex);
+        loggerFactory.CreateLogger("Program").LogApiError(ex);
         return TypedResults.BadRequest(ex);
     }
 });
