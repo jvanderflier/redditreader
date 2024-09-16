@@ -27,14 +27,13 @@ public sealed class RedditService : IRedditService
 
         if (r.IsSuccessStatusCode)
         {
-            var jsonString = await r.Content.ReadAsStringAsync();
-
             var options = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
             };
 
-            var data = JsonSerializer.Deserialize<PostRoot>(jsonString, options);
+          
+            var data = await JsonSerializer.DeserializeAsync<PostRoot>(await r.Content.ReadAsStreamAsync(), options);
 
             if (data is null)
             {

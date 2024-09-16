@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RedditReader.Data;
 public interface IRepositoryBase<T> where T : class
 {
-    T GetById(int id);
+    T? GetById(int id);
     IEnumerable<T> GetAll(bool disableTracking = false);
     IEnumerable<T> Find(Expression<Func<T, bool>> expression);
     void Add(T entity);

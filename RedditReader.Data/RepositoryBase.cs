@@ -26,14 +26,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     public IEnumerable<T> GetAll(bool disableTracking = false)
         => disableTracking ? _context.Set<T>().AsNoTracking() : _context.Set<T>();
 
-    public T GetById(int id)
+    public T? GetById(int id)
         => _context.Set<T>().Find(id);
 
     public void Update(T entity)
      => _context.Set<T>().Update(entity);
 
     public async Task SaveAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
+    => await _context.SaveChangesAsync();
 }
